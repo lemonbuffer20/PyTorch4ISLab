@@ -1,6 +1,5 @@
 import time
 import numpy as np
-from Cython.Includes.cpython.datetime import time_hour
 
 from torch4is.utils import time_log
 

@@ -144,6 +144,7 @@ https://resources.jetbrains.com/storage/products/pycharm/docs/PyCharm_ReferenceC
 * Remove line (Ctrl + Y)
 * Move line up/down (Ctrl + Shift + UP/DOWN)
 * Goto declaration (Ctrl + B)
+* Go back (Alt + LEFT)
 * Comment/Uncomment line (Ctrl + /)
 * Expand/Collapse paragraph (Ctrl + .)
 * Find (Ctrl + F)
