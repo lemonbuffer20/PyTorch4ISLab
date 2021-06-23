@@ -58,7 +58,7 @@ git pull origin
 git push origin
 ```
 
-## WanDB Setting
+## WandB Setting
 
 1. Make account for WanDB (https://wandb.ai)
 2. Copy your API key (settings - API keys)
