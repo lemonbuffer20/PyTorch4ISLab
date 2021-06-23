@@ -136,6 +136,8 @@ python -m day01.hello_world
 
 ## Pycharm is Best
 
+https://resources.jetbrains.com/storage/products/pycharm/docs/PyCharm_ReferenceCard.pdf
+
 * Autocomplete (Ctrl + Space)
 * Undo, Cut, Copy, Paste (Ctrl + Z, X, C, V)
 * Duplicate line (Ctrl + D)
