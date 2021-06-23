@@ -10,7 +10,7 @@
 
 1. Install Git (Windows: https://git-scm.com)
 2. Install miniconda Python=3.8 (https://docs.conda.io/en/latest/miniconda.html)
-3. Check if current machine supports NVIDIA CUDA (nvidia-smi) and check driver version. 
+3. Check if current machine supports NVIDIA CUDA (nvidia-smi) and check driver version.
 4. Open up Anaconda Powershell Prompt (Windows) or Terminal (Linux)
 5. Follow below
 
@@ -72,11 +72,13 @@ wandb login
 
 1. Open your repository in PyCharm
 2. Change README.md file (file should be 'green', which means it is changed.)
+
 ```shell
 Author: YOUR_EMAIL
 ```
 
 3. Change your .gitignore file
+
 ```shell
 # these files will be not tracked by Git.
 
@@ -104,8 +106,8 @@ wandb/
 logs/
 lightning_logs/
 checkpoints/
-
 ```
+
 4. Your first commit & first push
 
 * (menu) Git - Commit (Ctrl + K)
@@ -116,3 +118,35 @@ checkpoints/
 
 * (right click on file) Local history - Show history
 * You can revert it to any place you were in.
+
+## First Python Run
+
+1. Understand hello_world.py (try to type it by yourself.)
+2. In terminal, move to current folder.
+3. Run hello_world.py in terminal.
+4. ... or, run in Pycharm (Shift + F10 or Shift + F9)
+
+```shell
+cd Pytorch4ISLab
+# We should use -m flag because
+# hello_world.py cannot find 'torch4is' because it is not in PYTHONPATH
+# You may set PYTHONPATH manually.
+python -m day01.hello_world
+```
+
+## Pycharm is Best
+
+* Autocomplete (Ctrl + Space)
+* Undo, Cut, Copy, Paste (Ctrl + Z, X, C, V)
+* Duplicate line (Ctrl + D)
+* Remove line (Ctrl + Y)
+* Move line up/down (Ctrl + Shift + UP/DOWN)
+* Goto declaration (Ctrl + B)
+* Comment/Uncomment line (Ctrl + /)
+* Expand/Collapse paragraph (Ctrl + .)
+* Find (Ctrl + F)
+* Find and replace (Ctrl + FR)
+* Global find (Ctrl + Shift + F)
+* Global find and replace (Ctrl + Shift + FR)
+* Rename (Shift + F6)
+* Reformat (Ctrl + Alt + L)
