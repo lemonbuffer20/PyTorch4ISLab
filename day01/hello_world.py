@@ -17,7 +17,5 @@ def run():
     print(f"Object info: {type(data)}, is numpy? {isinstance(data, np.ndarray)}")
 
 
-
-
 if __name__ == '__main__':
     run()

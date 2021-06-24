@@ -1,5 +1,9 @@
 # Day 1: Environment Setting
 
+### What to reproduce:
+* `torch4is/utils.py` - `time_log()`
+* `day01/hello_world.py`
+
 ## Key
 
 1. You should be familiar with CLI
