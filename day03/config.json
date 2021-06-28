@@ -1,0 +1,24 @@
+{
+    "project": "Pytorch4ISLab",
+    "name": "day03",
+    "run_type": "test",
+    "save_dir": "result",
+    "wandb": {
+        "mode": "online",
+        "notes": "day03 logging example",
+        "id": null
+    },
+    "optimizer": {
+        "name": "sgd",
+        "lr": 0.01,
+        "momentum": 0.9,
+        "weight_decay": 0.0
+    },
+    "scheduler": {
+        "name": "cosine",
+        "max_steps": 1000,
+        "warmup_steps": 100,
+        "min_lr": 1e-6,
+        "mode": "min"
+    }
+}
