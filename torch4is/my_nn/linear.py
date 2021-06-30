@@ -26,7 +26,7 @@ class MyLinear(nn.Module):
     def _initialize_parameters(self) -> None:
         nn.init.kaiming_uniform_(self.weight, a=2.0)
         if self.bias is not None:
-            nn.init.uniform_(self.bias, -0.01, 0.01)
+            nn.init.uniform_(self.bias)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
