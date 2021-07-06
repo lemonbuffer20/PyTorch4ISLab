@@ -1,0 +1,51 @@
+{
+    "project": "Pytorch4ISLab",
+    "name": "cifar10",
+    "run_type": "train",
+    "save_dir": "result",
+    "wandb": {
+        "mode": "online",
+        "notes": "cifar-10 classification example",
+        "id": null
+    },
+    "model": {
+        "in_channels": 3,
+        "num_classes": 10
+    },
+    "dataset": {
+        "data_dir": "data/cifar-10"
+    },
+    "dataloader": {
+        "train": {
+            "batch_size": 256,
+            "shuffle": true,
+            "num_workers": 2,
+            "pin_memory": true,
+            "drop_last": true
+        },
+        "test": {
+            "batch_size": 500,
+            "shuffle": false,
+            "num_workers": 2,
+            "pin_memory": true,
+            "drop_last": false
+        }
+    },
+    "optimizer": {
+        "name": "sgd",
+        "lr": 0.1,
+        "momentum": 0.9,
+        "weight_decay": 4e-4
+    },
+    "scheduler": {
+        "name": "cosine",
+        "max_steps": 100,
+        "warmup_steps": 10,
+        "mode": "max"
+    },
+    "training": {
+        "max_epochs": 100,
+        "print_interval": 50,
+        "checkpoint": null
+    }
+}
