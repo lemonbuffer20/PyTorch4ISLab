@@ -3,10 +3,8 @@
 ## What to reproduce:
 
 * `my_loss/accuracy.py`
-* `my_data/cifar10/config.json`
-* `my_data/cifar10/build.py`
-* `my_data/cifar10/train.py`
-* `my_data/cifar10/test.py`
+* `examples/cifar10/config.json`
+* `examples/cifar10/train.py`
 
 ## Dataset
 

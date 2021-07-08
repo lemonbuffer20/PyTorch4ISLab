@@ -1,16 +1,17 @@
 {
     "project": "Pytorch4ISLab",
-    "name": "cifar10",
+    "name": "ae-cifar10",
     "run_type": "train",
     "save_dir": "result",
     "wandb": {
         "mode": "online",
-        "notes": "cifar-10 classification example",
+        "notes": "auto-encoder example with cifar10",
         "id": null
     },
     "model": {
         "in_channels": 3,
-        "num_classes": 10
+        "negative_slope": 0.1,
+        "drop_prob": 0.1
     },
     "dataset": {
         "data_dir": "data/cifar-10"
@@ -32,20 +33,21 @@
         }
     },
     "optimizer": {
-        "name": "sgd",
-        "lr": 1.0,
-        "momentum": 0.9,
-        "weight_decay": 4e-4
+        "name": "adam",
+        "lr": 0.001,
+        "betas": [0.9, 0.999],
+        "weight_decay": 1e-5
     },
     "scheduler": {
         "name": "cosine",
-        "max_steps": 100,
-        "warmup_steps": 10,
-        "mode": "max"
+        "max_steps": 250,
+        "warmup_steps": 0,
+        "mode": "min"
     },
     "training": {
-        "max_epochs": 100,
+        "max_epochs": 250,
         "print_interval": 50,
+        "visualize_interval": 5,
         "checkpoint": null
     }
 }
