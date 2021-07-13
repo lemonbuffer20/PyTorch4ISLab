@@ -12,7 +12,7 @@
         "in_channels": 3,
         "negative_slope": 0.1,
         "latent_size": 256,
-        "beta": 1.0
+        "beta": 0.1
     },
     "dataset": {
         "data_dir": "data/cifar-10"
@@ -46,7 +46,7 @@
         "mode": "min"
     },
     "training": {
-        "max_epochs": 250,
+        "max_epochs": 100,
         "print_interval": 50,
         "visualize_interval": 5,
         "checkpoint": null

@@ -13,7 +13,8 @@
 2. AE targets compressing the feature (encoder), while VAE targets generation (decoder).
 3. We use (1) reconstruction loss (2) KL-divergence loss for training.
 4. We sample from random noise and create samples.
-5. **HW** read VAE paper(https://arxiv.org/pdf/1906.02691.pdf) and understand **ELBO**
+5. Large KL-loss means that generated samples (z ~ N(0, 1)) will be much 'unlikely'.
+6. **HW** read VAE paper(https://arxiv.org/pdf/1906.02691.pdf) and understand **ELBO**
 
 ## Re-parameterization Trick
 
