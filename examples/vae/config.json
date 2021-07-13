@@ -1,0 +1,54 @@
+{
+    "project": "Pytorch4ISLab",
+    "name": "vae-cifar10",
+    "run_type": "train",
+    "save_dir": "result",
+    "wandb": {
+        "mode": "online",
+        "notes": "variational auto-encoder with optional Beta control example with cifar10",
+        "id": null
+    },
+    "model": {
+        "in_channels": 3,
+        "negative_slope": 0.1,
+        "latent_size": 256,
+        "beta": 1.0
+    },
+    "dataset": {
+        "data_dir": "data/cifar-10"
+    },
+    "dataloader": {
+        "train": {
+            "batch_size": 256,
+            "shuffle": true,
+            "num_workers": 2,
+            "pin_memory": true,
+            "drop_last": true
+        },
+        "test": {
+            "batch_size": 500,
+            "shuffle": false,
+            "num_workers": 2,
+            "pin_memory": true,
+            "drop_last": false
+        }
+    },
+    "optimizer": {
+        "name": "adam",
+        "lr": 0.001,
+        "betas": [0.9, 0.999],
+        "weight_decay": 1e-5
+    },
+    "scheduler": {
+        "name": "cosine",
+        "max_steps": 250,
+        "warmup_steps": 0,
+        "mode": "min"
+    },
+    "training": {
+        "max_epochs": 250,
+        "print_interval": 50,
+        "visualize_interval": 5,
+        "checkpoint": null
+    }
+}

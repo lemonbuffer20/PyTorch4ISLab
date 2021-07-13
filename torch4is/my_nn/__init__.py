@@ -7,4 +7,4 @@ from .conv import MyConv2d
 from .batchnorm import MyBatchNorm2d
 from .dropout import MyDropout
 from .pooling import MyGlobalAvgPool
-from .upsample import MyUpsamplingNearest2d
+from .upsample import MyUpsamplingNearest2d, MyUpsamplingBilinear2d
