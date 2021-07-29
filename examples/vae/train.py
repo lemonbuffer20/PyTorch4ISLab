@@ -23,6 +23,9 @@ class CompositeModel(nn.Module):
     def __init__(self, cfg: dict):
         super().__init__()
         self.beta = cfg.pop("beta")
+        self.beta_warmup = cfg.pop("beta_warmup")
+        self._step = 0
+
         self.net = MyVAE(**cfg)
 
         self.latent_size = self.net.latent_size
@@ -30,15 +33,26 @@ class CompositeModel(nn.Module):
         self.recon_loss = nn.BCELoss()
         self.kl_loss = GaussianKLDiv()
 
+    def update_beta(self):
+        self._step += 1
+
     def forward(self, image: torch.Tensor) -> dict:
         output = {}
 
         predict, mu, logvar = self.net(image)
+        output["mu"] = mu
+        output["logvar"] = logvar
 
         recon_loss = self.recon_loss(predict, image)
         kl_loss = self.kl_loss(mu, logvar)
 
-        output["loss"] = recon_loss + self.beta * kl_loss
+        # warmup beta
+        if self._step < self.beta_warmup:
+            beta = self.beta * (self._step + 1) / self.beta_warmup
+        else:
+            beta = self.beta
+
+        output["loss"] = recon_loss + beta * kl_loss
         output["recon_loss"] = recon_loss
         output["kl_loss"] = kl_loss
         output["predict"] = predict
@@ -199,6 +213,8 @@ def train(cfg: dict):
             torch.save(model.state_dict(), os.path.join(save_dir, "best.ckpt"))
             print("Best saved.")
 
+        model.update_beta()
+
         # ------------------------------------------------------------------------ #
         # Visualize
         # ------------------------------------------------------------------------ #
@@ -222,12 +238,15 @@ def train(cfg: dict):
                     pred_np = np.uint8(np.clip(pred_np * 255, 0, 255))  # (16, 16, 32, 32, 3)
                     Image.fromarray(pred_np).save(os.path.join(save_dir, f"epoch-{epoch}-pred.png"))
 
-                    z1 = torch.randn(16, model.latent_size, device="cuda")  # generate from noise
-                    z2 = torch.randn(16, model.latent_size, device="cuda")  # generate from noise
+                    z1 = MyVAE.reparameterize(output["mu"], output["logvar"])[:16]  # (16, latent_dim)
+                    z2 = torch.roll(z1, 1, 0)
                     z = []
                     for j in range(16):
                         scale = float(j / 15)
-                        z.append(z1 * scale + z2 * (1.0 - scale))
+                        z_candidate = z1 * scale + z2 * (1.0 - scale)
+                        # optional: project to unit sphere
+                        z_candidate /= torch.norm(z_candidate, dim=-1, keepdim=True)
+                        z.append(z_candidate)
                     z = torch.stack(z, dim=0).view(256, model.latent_size)  # (16, 16, 256) -> (256, 256)
                     gen_np = model.generate(z).detach().cpu().numpy()  # (256, 3, 32, 32)
                     gen_np = gen_np.reshape(16, 16, 3, 32, 32).transpose(0, 3, 1, 4, 2).reshape(16 * 32, 16 * 32, 3)

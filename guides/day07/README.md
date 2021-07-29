@@ -2,6 +2,7 @@
 
 ## What to reproduce:
 
+* `torch4is/my_nn/conv_transpose.py`
 * `torch4is/my_loss/gaussian_kldiv.py`
 * `examples/vae/config.json`
 * `examples/vae/model.py`
@@ -27,6 +28,7 @@
 
 1. If latent space (Z) is well-trained, the network should generate similar images for similar z.
 2. We can linearly interpolate through Z and see the corresponding images.
+3. For better generation, we may project Z to unit sphere, to restrict latent distribution.
 
 ## Beta-VAE
 
