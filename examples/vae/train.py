@@ -201,14 +201,14 @@ def train(cfg: dict):
         print(s)
         wandb.log({
             "test_loss": test_loss,
-            "test_recon_loss": test_loss,
-            "test_kl_loss": test_loss,
+            "test_recon_loss": test_recon_loss,
+            "test_kl_loss": test_kl_loss,
             "iteration": iteration,
             "epoch": epoch,
         })
 
         scheduler.step()
-        is_updated = scheduler.update_best(test_loss)
+        is_updated = scheduler.update_best(test_recon_loss + test_kl_loss)
         if is_updated:
             torch.save(model.state_dict(), os.path.join(save_dir, "best.ckpt"))
             print("Best saved.")

@@ -12,8 +12,8 @@
         "in_channels": 3,
         "negative_slope": 0.1,
         "latent_size": 512,
-        "beta": 1.0,
-        "beta_warmup": 50
+        "beta": 0.1,
+        "beta_warmup": 20
     },
     "dataset": {
         "data_dir": "data/cifar-10"
